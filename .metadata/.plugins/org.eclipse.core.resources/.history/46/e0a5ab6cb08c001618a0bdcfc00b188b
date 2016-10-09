@@ -1,0 +1,41 @@
+package br.com.fiap.util;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Arquivo {
+	
+	public static Map<String, String> pegarServidor() throws Exception{
+		System.out.println("pegarServidor");
+		FileReader fR = new FileReader(System.getProperty("user.dir") + "/db_cfg/banco.txt");		
+		BufferedReader bR = new BufferedReader(fR);
+		
+		Map<String, String> cfg = new HashMap<String, String>();
+		
+		String endereco = bR.readLine();
+		
+		while(bR.ready()){
+			System.out.println(bR.readLine());
+			if(bR.readLine().indexOf("oracle") > 0){
+				cfg.put("driver", "oracle.jdbc.driver.OracleDriver");
+				cfg.put("url", endereco);
+				
+				break;
+			}else if(bR.readLine().indexOf("mysql") > 0){				
+				cfg.put("driver", "com.mysql.jdbc.Driver");
+				cfg.put("url", endereco);
+				break;
+			}else{
+				cfg.put("driver", "nenhum");
+				cfg.put("url", "nenhum");
+			}
+		}
+		
+		bR.close();
+		
+		return cfg;	
+	}
+
+}

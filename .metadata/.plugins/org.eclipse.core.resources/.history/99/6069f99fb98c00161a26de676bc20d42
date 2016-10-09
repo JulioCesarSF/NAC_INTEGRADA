@@ -1,0 +1,4 @@
+class java.lang.NullPointerException
+class java.lang.NumberFormatException
+class java.sql.SQLRecoverableException
+class java.io.FileNotFoundException

@@ -1,0 +1,25 @@
+<!-- jQuery 3.1.0 -->
+<script src="js/jquery-3.1.0.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script src="js/bootstrap.min.js"></script>
+
+<!-- outros.css
+1) Desabilitar resize de textarea
+ -->
+<link rel="stylesheet" type="text/css" href="css/outros.css">
+
+<!-- jstl -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
+<!-- CDN
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+ -->
+ 
+ <!-- rodape 
+<link rel="stylesheet" type="text/css" href="css/rodape.css">
+-->

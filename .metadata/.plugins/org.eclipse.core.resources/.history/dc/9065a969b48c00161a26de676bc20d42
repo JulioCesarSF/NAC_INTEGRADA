@@ -1,0 +1,41 @@
+package br.com.fiap.servlet;
+
+import java.io.IOException;
+import java.sql.Connection;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import br.com.fiap.conexao.Conexao;
+import br.com.fiap.excecao.Excecao;
+
+@SuppressWarnings("serial")
+public class TesteConexao extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+		Connection c = null;
+
+		try {
+			c = new Conexao().getInst().getConnection("OPS$RM75583", "131087");
+			System.out.println("Conectado");
+
+		} catch (Exception e) {
+			throw new Excecao(e);
+		} finally {
+			try {
+				if (c != null) {
+					c.close();
+					System.out.println("Desconectado");
+				}
+			} catch (Exception e) {
+				throw new Excecao(e);
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,73 @@
+package br.com.fiap.util;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+public class Arquivo {
+
+	/**
+	 * Método para pegar URL(Endereço) e Driver do banco de dados em um arquivo txt
+	 * sem usar o <b>Tomcat</b>
+	 * @return
+	 * @throws Exception
+	 */
+	public static Map<String, String> pegarServidor() throws Exception {
+		FileReader fR = new FileReader(System.getProperty("user.dir") + "/db_cfg/banco.txt");
+		BufferedReader bR = new BufferedReader(fR);
+
+		Map<String, String> cfg = new HashMap<String, String>();
+
+		String endereco = bR.readLine();
+		
+		if (endereco.indexOf("oracle") > 0) {
+			cfg.put("driver", "oracle.jdbc.driver.OracleDriver");
+			cfg.put("url", endereco);			
+		} else if (endereco.indexOf("mysql") > 0) {
+			cfg.put("driver", "com.mysql.jdbc.Driver");
+			cfg.put("url", endereco);			
+		} else {
+			cfg.put("driver", "nenhum");
+			cfg.put("url", "nenhum");
+		}
+
+		bR.close();
+
+		return cfg;
+	}
+	
+	/**
+	 * Método para pegar URL(Endereço) e Driver do banco de dados em um arquivo txt
+	 * usando o <b>Tomcat</b>
+	 * @param req
+	 * @return
+	 * @throws Exception
+	 */
+	public static Map<String, String> pegarServidor(HttpServletRequest req) throws Exception {		
+		FileReader fR = new FileReader( req.getServletContext().getRealPath("WEB-INF/db_cfg/banco.txt")  );
+		BufferedReader bR = new BufferedReader(fR);
+
+		Map<String, String> cfg = new HashMap<String, String>();
+
+		String endereco = bR.readLine();
+		
+		if (endereco.indexOf("oracle") > 0) {
+			cfg.put("driver", "oracle.jdbc.driver.OracleDriver");
+			cfg.put("url", endereco);			
+		} else if (endereco.indexOf("mysql") > 0) {
+			cfg.put("driver", "com.mysql.jdbc.Driver");
+			cfg.put("url", endereco);			
+		} else {
+			cfg.put("driver", "nenhum");
+			cfg.put("url", "nenhum");
+		}
+
+		bR.close();
+
+		return cfg;
+	}
+
+}

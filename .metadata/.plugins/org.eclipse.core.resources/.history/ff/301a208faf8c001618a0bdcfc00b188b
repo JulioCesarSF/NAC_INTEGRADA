@@ -1,0 +1,21 @@
+package br.com.fiap.testes;
+
+import br.com.fiap.conexao.Conexao;
+
+public class TesteConexao {
+	
+	public static void main(String[] args) throws Exception {
+		
+		Connection c = null;
+		
+		try{
+			
+			c = new Conexao().getInst().conectar();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}

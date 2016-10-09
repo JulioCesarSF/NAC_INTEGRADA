@@ -1,0 +1,29 @@
+package br.com.fiap.util;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+public class Arquivo {
+	
+	public static String pegarServidor() throws Exception{
+		FileReader fR = new FileReader(System.getProperty("user.dir") + "/db_cfg/banco.txt");		
+		BufferedReader bR = new BufferedReader(fR);
+		String tipo = new String();
+		
+		while(bR.ready()){
+			if(bR.readLine().indexOf("oracle") > 0){
+				tipo = "oracle.jdbc.driver.OracleDriver";
+				break;
+			}else if(bR.readLine().indexOf("mysql") > 0){
+				tipo = "com.mysql.jdbc.Driver";
+				break;
+			}else{
+				tipo = "nenhum";
+			}
+		}
+		bR.close();
+		
+		return tipo;		
+	}
+
+}

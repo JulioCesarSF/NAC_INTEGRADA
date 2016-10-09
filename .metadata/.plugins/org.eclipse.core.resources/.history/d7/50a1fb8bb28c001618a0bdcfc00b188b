@@ -1,0 +1,36 @@
+package br.com.fiap.testes;
+
+import java.sql.Connection;
+
+import br.com.fiap.conexao.Conexao;
+import br.com.fiap.excecao.Excecao;
+
+public class TesteConexao {
+	
+	public static void main(String[] args) throws Exception {		
+		
+		Connection c = null;
+		
+		try{
+			
+			c = new Conexao().getInst().conectar("OPS$RM75583", "131087");
+			System.out.println("Conectado");
+			
+		}catch (Exception e) {
+			//e.printStackTrace();
+			throw new Excecao(e);
+		}finally {
+			try{
+				if(c != null){
+					c.close();
+					System.out.println("Desconectado");
+				}
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+}

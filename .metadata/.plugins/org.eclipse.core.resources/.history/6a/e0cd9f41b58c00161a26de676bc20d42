@@ -1,0 +1,30 @@
+package br.com.fiap.excecao;
+
+@SuppressWarnings("serial")
+public class Excecao extends Exception {
+	
+	public Excecao(){
+		System.out.println("Erro");
+	}
+	
+	public Excecao(Exception e){
+		String mensagem = new String(tratar(e));
+		System.out.println(mensagem);
+	}
+	
+	public Excecao(String mensagem){
+		super(mensagem);
+	}
+	
+	public String tratar(Exception e){
+		if(e.getClass().toString().equals("class java.lang.NullPointerException")){
+			return "NullPointer (Ponteiro)";
+		}else if(e.getClass().toString().equals("class java.lang.NumberFormatException")){
+			return "Número com formato inválido.";
+		}else if(e.getClass().toString().equals("class java.sql.SQLRecoverableException")){
+			return "The Network Adapter could not establish the connection";
+		}
+		return "Sem tratamento";
+	}
+
+}

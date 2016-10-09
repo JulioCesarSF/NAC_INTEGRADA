@@ -1,0 +1,13 @@
+1475857668302	Delete element
+1475857701220	Copy package
+1475857703794	Delete element
+1475857707268	Delete element
+1475857754423	Copy package
+1475857756732	Delete element
+1475858504730	Rename compilation unit 'ConexaoFactory.java'
+1475859700704	Move 'db_cfg' to 'NAC_INTEGRADA_2SEMESTRE'
+1475862204999	Move 'db_cfg' to 'WEB-INF'
+1475862207152	Move 'excecao' to 'WEB-INF'
+1475864503320	Rename type 'TesteConexao'
+1475864588468	Extract method 'testeConexao'
+1475865223361	Delete element

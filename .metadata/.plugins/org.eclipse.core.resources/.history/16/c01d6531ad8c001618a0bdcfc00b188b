@@ -1,0 +1,31 @@
+package br.com.fiap.conexao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+/*final para não ser possível herdar esta classe*/
+public final class Conexao {
+	
+	private static Conexao con = null;
+	
+	public Conexao(){}
+	
+	public Conexao getInst(){
+		if(con == null)
+			con = new Conexao();
+		return con;
+	}
+	
+	public Connection conectar(String usuario, String senha) throws Exception{
+		
+		
+		return DriverManager.getConnection("", "", "");
+	}
+	
+	public Connection conectar() throws Exception{
+		return DriverManager.getConnection("");
+	}
+	
+
+}

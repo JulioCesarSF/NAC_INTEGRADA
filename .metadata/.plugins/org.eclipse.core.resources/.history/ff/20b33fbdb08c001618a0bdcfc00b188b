@@ -1,0 +1,36 @@
+package br.com.fiap.testes;
+
+import java.sql.Connection;
+import java.util.Map;
+
+import br.com.fiap.conexao.Conexao;
+import br.com.fiap.util.Arquivo;
+
+public class TesteConexao {
+	
+	public static void main(String[] args) throws Exception {		
+		
+		Connection c = null;
+		
+		try{
+			
+			c = new Conexao().getInst().conectar();
+			System.out.println("Conectado");
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try{
+				if(c != null){
+					c.close();
+					System.out.println("Desconectado");
+				}
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+}

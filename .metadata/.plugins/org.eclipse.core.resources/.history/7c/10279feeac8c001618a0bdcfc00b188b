@@ -1,0 +1,11 @@
+package br.com.fiap.conexao;
+
+/*final para não ser possível herdar esta classe*/
+public final class ConexaoFactory {
+	
+	private static ConexaoFactory con = null;
+	
+	public Conexao
+	
+
+}

@@ -1,0 +1,72 @@
+package br.com.fiap.excecao;
+
+/**
+ * Classe para tratamento de exceções.
+ * 
+ * @author Guardiões do Código
+ *@see Exception
+ */
+@SuppressWarnings("serial")
+public class Excecao extends Exception {
+	
+	/**
+	 * Construtor vazio que irá imprimir a mensagem "Erro" apenas.
+	 */
+	public Excecao(){
+		System.out.println("Erro");
+	}
+	
+	/**
+	 * Construtor para tratamento de Exceções
+	 * @param e Exception
+	 */
+	public Excecao(Exception e){
+		String mensagem = new String(tratar(e));
+		System.out.println(mensagem);
+	}
+	
+	/**
+	 * Construtor para tratamento de Exceções
+	 * com stacktrace
+	 * @param e Exception
+	 * @param stackTrace true para imprimir stacktrace e false para não imprimir
+	 */
+	public Excecao(Exception e, boolean stackTrace){
+		String mensagem = new String(tratar(e));
+		System.out.println(mensagem);
+		
+		if(stackTrace){
+			System.out.println("-> StackTrace:");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Construtor para imprimir mensagem customizada sem tratamento de exceção
+	 * @param mensagem Mensagem
+	 */
+	public Excecao(String mensagem){
+		super(mensagem);
+	}
+	
+	/**
+	 * Método responsável pelo tratametno de exceções
+	 * @param e Exception
+	 * @return Uma mensagem customizada para cada exceção tratada aqui
+	 */
+	public String tratar(Exception e){
+		if(e.getClass().toString().equals("class java.lang.NullPointerException")){
+			return "NullPointer";
+		}else if(e.getClass().toString().equals("class java.lang.NumberFormatException")){
+			return "Número com formato inválido.";
+		}else if(e.getClass().toString().equals("class java.sql.SQLRecoverableException")){
+			return "The Network Adapter could not establish the connection";
+		}else if(e.getClass().toString().equals("class java.io.FileNotFoundException")){
+			return "Arquivo não encontrado.";
+		}else if(e.getClass().toString().equals("class java.net.ConnectException")){
+			return "Connection timed out: connect";
+		}
+		return "Sem tratamento";
+	}
+
+}

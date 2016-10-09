@@ -1,0 +1,59 @@
+package br.com.fiap.servlet;
+
+import java.io.IOException;
+import java.sql.Connection;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import br.com.fiap.conexao.Conexao;
+
+@WebServlet("/testes")
+@SuppressWarnings("serial")
+public class Testes extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String acao = new String(req.getParameter("acao"));
+		
+		switch (acao) {
+		case "testeConexao":			
+			testeConexao(req, resp);			
+			break;
+
+		default:
+			break;
+		}
+		
+		
+		
+
+	}
+
+	private void testeConexao(HttpServletRequest req, HttpServletResponse resp) {
+		Connection c = null;
+
+		try {
+			
+			c = new Conexao().getInst().getConnection("OPS$RM75583", "131087", req);			
+			req.setAttribute("retornoTesteConexao", "list-group-item-success");
+		} catch (Exception e) {			
+			e.printStackTrace();
+			req.setAttribute("retornoTesteConexao", "list-group-item-warning");
+		} finally {
+			try {
+				if (c != null) {
+					c.close();					
+					req.getRequestDispatcher("testes.jsp").forward(req, resp);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

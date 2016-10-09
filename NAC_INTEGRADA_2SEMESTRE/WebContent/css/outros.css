@@ -1,0 +1,4 @@
+/*desabilitar resize textarea*/
+textarea{
+	resize: none;
+}
